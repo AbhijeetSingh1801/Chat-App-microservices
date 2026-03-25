@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Auth Service (debug)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/python/src/auth/server.py",
+      "envFile": "${workspaceFolder}/python/src/auth/.env.local",
+      "python": "${workspaceFolder}/python/src/auth/venv/bin/python",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Gateway (debug)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"],
+      "envFile": "${workspaceFolder}/python/src/gateway/.env",
+      "python": "${workspaceFolder}/python/src/gateway/venv/bin/python",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/python/src/gateway"
+    }
+  ]
+}
