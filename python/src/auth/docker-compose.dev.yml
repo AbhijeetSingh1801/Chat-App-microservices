@@ -1,0 +1,28 @@
+version: "3.9"
+
+# Dev only — starts DB accessible on localhost:3307
+# Run Flask directly for debugging: python server.py
+#
+# Usage:
+#   docker-compose -f docker-compose.dev.yml up
+#   then run Flask with .env.local
+
+services:
+  auth-db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - auth-db-dev-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  auth-db-dev-data:

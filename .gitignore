@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.idea/
+.mvn/
+
+# IDE
+.vscode/settings.json
+.DS_Store
+
+# Docker
+*.log
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+
+# Secrets
+*.pem
+*.key

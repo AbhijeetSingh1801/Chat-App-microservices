@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+
+  gateway:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    # gateway needs auth reachable — run alongside auth stack on the same network
+    # docker compose -f ../auth/docker-compose.yml -f docker-compose.yml up

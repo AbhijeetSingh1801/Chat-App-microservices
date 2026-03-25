@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+
+  # ── Step 1: MySQL database ─────────────────────────────────────────────────
+  auth-db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    # no host port — only reachable within Docker network
+    volumes:
+      # init.sql runs automatically on first container start
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      # persist data across restarts
+      - auth-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Step 2: Auth Flask service ─────────────────────────────────────────────
+  auth:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "5001:5000"
+    env_file:
+      - .env
+    depends_on:
+      auth-db:
+        condition: service_healthy
+
+volumes:
+  auth-db-data:
