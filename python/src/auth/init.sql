@@ -1,4 +1,4 @@
-CREATE USER 'auth_user'@'%' IDENTIFIED BY 'auth_user';
+CREATE USER 'auth_user'@'%' IDENTIFIED BY 'Aauth123';
 
 CREATE DATABASE auth;
 
@@ -14,5 +14,4 @@ CREATE TABLE user(
 );
 
 
-INSERT INTO user (email, password) VALUES ('
-', 'pass');
+INSERT INTO user (email, password) VALUES ('test@test.com', '$2b$12$oBgtvnR6f0eWIk89ARN7WewsMyea2ZCGLtpcBlDhG5VUnxF5RUnr6');
