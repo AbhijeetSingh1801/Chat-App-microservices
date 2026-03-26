@@ -61,6 +61,14 @@ Downstream services trust `X-User-Email` — they never verify JWTs themselves.
 | `WS_SERVICE_URL` | `http://websocket:8000` | WebSocket service base URL |
 | `PRESENCE_SERVICE_URL` | `http://presence:5001` | Presence service base URL |
 
+## Running
+Included in root `docker-compose.yml`. Exposed on host port `7001`.
+
+```bash
+# from project root
+docker compose up --build
+```
+
 ## Dependencies
 `fastapi`, `uvicorn`, `httpx`
 Tracked in `requirements.txt`.
